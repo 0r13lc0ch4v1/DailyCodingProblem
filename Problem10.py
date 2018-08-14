@@ -12,7 +12,7 @@ class Scheduler:
         self._tasks_queue = []
 
     def add_task(self, task, params, delay):
-        self._task_queue.append((task, params, time.time() + delay))
+        self._tasks_queue.append((task, params, time.time() + delay))
 
     def execute_tasks(self):
         self._tasks_queue = sorted(self._tasks_queue, key=lambda x: x[2])

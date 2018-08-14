@@ -9,20 +9,20 @@ import time
 
 class Scheduler:
     def __init__(self):
-        self._task_queue = []
+        self._tasks_queue = []
 
     def add_task(self, task, params, delay):
         self._task_queue.append((task, params, time.time() + delay))
 
     def execute_tasks(self):
-        self._task_queue = sorted(self._task_queue, key=lambda x: x[2])
-        while self._task_queue:
-            task, ars, exe_time = self._task_queue.pop(0)
+        self._tasks_queue = sorted(self._tasks_queue, key=lambda x: x[2])
+        while self._tasks_queue:
+            task, args, exe_time = self._tasks_queue.pop(0)
             try:
                 time.sleep(exe_time - time.time())
             except ValueError:
                 pass
-            task(*ars)
+            task(*args)
 
 
 def print_time(sec, start_time):
